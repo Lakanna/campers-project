@@ -4,10 +4,13 @@ import HomePage from '../../pages/HomePage/HomePage.jsx';
 import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage.jsx';
 import CatalogPage from '../../pages/CatalogPage/CatalogPage.jsx';
 import CamperDetailsPage from '../../pages/CamperDetailsPage/CamperDetailsPage.jsx';
+import Navigation from '../Navigation/Navigation.jsx';
 
 function App() {
   return (
     <>
+      <Navigation />
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/catalog" element={<CatalogPage />} />
