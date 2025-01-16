@@ -1,0 +1,11 @@
+.logoContainer {
+  display: flex;
+  align-items: flex-end;
+  width: 136px;
+}
+
+.second {
+  fill: var(--color-text);
+  display: inline-block;
+  vertical-align: middle;
+}
