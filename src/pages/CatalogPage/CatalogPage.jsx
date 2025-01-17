@@ -1,3 +1,5 @@
+import Catalog from '../../components/Catalog/Catalog.jsx';
+
 export default function CatalogPage() {
-  return <>Catalog of campers</>;
+  return <Catalog />;
 }

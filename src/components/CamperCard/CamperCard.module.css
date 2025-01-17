@@ -1,0 +1,88 @@
+.card {
+  width: 888px;
+  height: 368px;
+  display: flex;
+  padding: 24px;
+  gap: 24px;
+  border-radius: 20px;
+  border: 1px solid var(--color-gray-light);
+  margin-bottom: 32px;
+}
+
+.imgContainer {
+  width: 292px;
+  height: 320px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.img {
+  width: 100%; /* Робимо ширину фото адаптивною */
+  height: 100%; /* Робимо висоту фото адаптивною */
+  object-fit: cover;
+}
+
+.camperInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 524px;
+  height: 320px;
+}
+
+.nameContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.priceContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.locationContainer {
+  display: flex;
+  align-items: center;
+}
+
+.star {
+  fill: var(--color-rating);
+  margin-right: 4px;
+}
+
+.mapActive {
+  margin-left: 16px;
+  margin-right: 4px;
+}
+.singleLine {
+  width: 524px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.iconsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.featureLi {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background-color: var(--color-badges);
+  border-radius: 100px;
+}
+
+.favorited {
+  fill: var(--color-button);
+}
+
+.favoriteButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+}

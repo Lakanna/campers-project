@@ -6,12 +6,20 @@ const favoriteSlice = createSlice({
     items: [],
   },
   reducers: {
-    setFavorite(state, action) {
-      state.status = action.payload;
+    toggleFavorite(state, action) {
+      const existingItemIndex = state.items.findIndex(
+        (item) => item === action.payload,
+      );
+
+      if (existingItemIndex !== -1) {
+        state.items.splice(existingItemIndex, 1);
+      } else {
+        state.items.push(action.payload);
+      }
     },
   },
 });
 
-export const { setFavorite } = favoriteSlice.actions;
+export const { toggleFavorite } = favoriteSlice.actions;
 
 export default favoriteSlice.reducer;
