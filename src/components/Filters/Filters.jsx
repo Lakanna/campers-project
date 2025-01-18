@@ -1,4 +1,4 @@
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Field, Form, ErrorMessage, FieldArray } from 'formik';
 import * as Yup from 'yup';
 import css from './Filters.module.css';
 import Icon from '../Icon/Icon.jsx';
@@ -34,7 +34,7 @@ export default function Filters() {
       })}
       onSubmit={handleSubmit}
     >
-      {({ values, setFieldValue }) => (
+      {({ values }) => (
         <Form>
           <div className={css.inputContainer}>
             <label htmlFor="location" className={css.inputLabel}>
@@ -62,37 +62,39 @@ export default function Filters() {
             {/* Список кастомних чекбоксів */}
             <div>
               <h3 className={css.filtersName}>Vehicle equipment</h3>
-              <ul className={css.iconsContainer}>
-                {FEATURE_KEYS.map((feature, idx) => {
-                  const isSelected = values.equipment.includes(feature);
+              <FieldArray
+                name="equipment"
+                render={(arrayHelpers) => (
+                  <ul className={css.iconsContainer}>
+                    {FEATURE_KEYS.map((feature, idx) => {
+                      const isSelected = values.equipment.includes(feature);
 
-                  return (
-                    <li
-                      key={idx}
-                      className={`${css.featureLi} ${
-                        isSelected ? css.selected : ''
-                      }`}
-                      onClick={() => {
-                        // Логіка додавання/видалення значення в масив
-                        if (isSelected) {
-                          setFieldValue(
-                            'equipment',
-                            values.equipment.filter((item) => item !== feature),
-                          );
-                        } else {
-                          setFieldValue('equipment', [
-                            ...values.equipment,
-                            feature,
-                          ]);
-                        }
-                      }}
-                    >
-                      <Icon id={feature} width={32} height={32} />
-                      <span>{capitalizeFirstLetter(feature)}</span>
-                    </li>
-                  );
-                })}
-              </ul>
+                      return (
+                        <li
+                          key={idx}
+                          className={`${css.featureLi} ${
+                            isSelected ? css.selected : ''
+                          }`}
+                          onClick={() => {
+                            if (isSelected) {
+                              // Видалення значення з масиву
+                              arrayHelpers.remove(
+                                values.equipment.indexOf(feature),
+                              );
+                            } else {
+                              // Додавання значення до масиву
+                              arrayHelpers.push(feature);
+                            }
+                          }}
+                        >
+                          <Icon id={feature} width={32} height={32} />
+                          <span>{capitalizeFirstLetter(feature)}</span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+              />
             </div>
 
             <div>

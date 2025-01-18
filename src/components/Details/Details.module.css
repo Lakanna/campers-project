@@ -27,3 +27,7 @@
 .detailsItem:not(:last-child) {
   padding-bottom: 16px;
 }
+
+.details {
+  background-color: var(--color-gray-details);
+}

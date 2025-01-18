@@ -8,7 +8,7 @@ export default function Details({ camper }) {
   return (
     <div className={css.detailsContainer}>
       <div className={css.iconsContainer}>
-        <FilteredIcons camper={camper} className="details" />
+        <FilteredIcons camper={camper} className={css.details} />
       </div>
       <div>
         <h3 className={css.titleContainer}>Vehicle details</h3>
