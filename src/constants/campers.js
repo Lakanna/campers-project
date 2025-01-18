@@ -9,3 +9,5 @@ export const FEATURE_KEYS = [
   'gas',
   'water',
 ];
+
+export const VEHICLE_TYPE = ['van', 'fullyIntegrated', 'alcove'];

@@ -1,67 +1,87 @@
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import css from './Filters.module.css';
 import Icon from '../Icon/Icon.jsx';
+
 import { capitalizeFirstLetter } from '../../services/helpers.js';
 import { FEATURE_KEYS } from '../../constants/campers.js';
+import { VEHICLE_TYPE } from '../../constants/campers.js';
+import { useDispatch } from 'react-redux';
+import { setFilters } from '../../redux/filtersSlice.js';
 
-export default function Filters({ onSubmit }) {
+export default function Filters() {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values, actions) => {
+    dispatch(setFilters(values));
+    actions.resetForm();
+  };
+
+  const locationValidation = /^[A-Za-z\s]+,\s[A-Za-z\s]+$/;
+
   return (
     <Formik
       initialValues={{
-        searchText: '',
-        selectedOption: 'option1',
-        selectedCategories: [],
+        location: '',
+        form: '',
+        equipment: [],
       }}
       validationSchema={Yup.object({
-        searchText: Yup.string().required('Поле для пошуку обов’язкове'),
+        location: Yup.string().matches(
+          locationValidation,
+          'Location must be in the format: "Country, City"',
+        ),
       })}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
     >
       {({ values, setFieldValue }) => (
         <Form>
           <div className={css.inputContainer}>
-            <label htmlFor="searchText" className={css.inputLabel}>
+            <label htmlFor="location" className={css.inputLabel}>
               Location
             </label>
-            <Field
-              id="searchText"
-              name="searchText"
-              type="text"
-              placeholder="Kyiv, Ukraine"
-              className={css.input}
+            <div className={css.inputWrapper}>
+              <Field
+                id="location"
+                name="location"
+                type="text"
+                placeholder="Ukraine, Kyiv"
+                className={css.input}
+              />
+              <Icon id="Map" width={20} height={20} className={css.mapIcon} />
+            </div>
+            <ErrorMessage
+              name="location"
+              component="div"
+              className={css.error}
             />
-            <Icon id="Map" width={20} height={20} className={css.mapIcon} />
           </div>
 
           <div>
             <p className={css.filtersLabel}>Filters</p>
             {/* Список кастомних чекбоксів */}
             <div>
-              <h3>Vehicle equipment</h3>
+              <h3 className={css.filtersName}>Vehicle equipment</h3>
               <ul className={css.iconsContainer}>
                 {FEATURE_KEYS.map((feature, idx) => {
-                  const isSelected =
-                    values.selectedCategories.includes(feature); // Перевіряємо, чи вибраний цей елемент
+                  const isSelected = values.equipment.includes(feature);
 
                   return (
                     <li
                       key={idx}
                       className={`${css.featureLi} ${
                         isSelected ? css.selected : ''
-                      }`} // Додаємо клас для активного стану
+                      }`}
                       onClick={() => {
                         // Логіка додавання/видалення значення в масив
                         if (isSelected) {
                           setFieldValue(
-                            'selectedCategories',
-                            values.selectedCategories.filter(
-                              (item) => item !== feature,
-                            ),
+                            'equipment',
+                            values.equipment.filter((item) => item !== feature),
                           );
                         } else {
-                          setFieldValue('selectedCategories', [
-                            ...values.selectedCategories,
+                          setFieldValue('equipment', [
+                            ...values.equipment,
                             feature,
                           ]);
                         }
@@ -75,26 +95,34 @@ export default function Filters({ onSubmit }) {
               </ul>
             </div>
 
-            {/* Список радіокнопок */}
             <div>
-              <h3>Vehicle type</h3>
-              <label>
-                <Field type="radio" name="selectedOption" value="option1" />
-                Опція 1
-              </label>
-              <label>
-                <Field type="radio" name="selectedOption" value="option2" />
-                Опція 2
-              </label>
-              <label>
-                <Field type="radio" name="selectedOption" value="option3" />
-                Опція 3
-              </label>
+              <h3 className={css.filtersName}>Vehicle type</h3>
+              <ul className={css.iconsContainer}>
+                {VEHICLE_TYPE.map((type, idx) => (
+                  <li key={idx} className={css.featureLi}>
+                    <Field
+                      type="radio"
+                      name="form"
+                      id={`vehicle-${idx}`}
+                      value={type}
+                      className={css.hiddenRadio}
+                    />
+                    <label htmlFor={`vehicle-${idx}`} className={css.label}>
+                      <Icon id={type} width={32} height={32} />
+                      {capitalizeFirstLetter(type).replace(
+                        /([a-z])([A-Z])/g,
+                        '$1 $2',
+                      )}
+                    </label>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
-          {/* Кнопка для сабміту */}
-          <button type="submit">Фільтрувати</button>
+          <button type="submit" className={css.button}>
+            Search
+          </button>
         </Form>
       )}
     </Formik>

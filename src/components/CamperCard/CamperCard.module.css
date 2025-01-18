@@ -41,40 +41,12 @@
   align-items: center;
   gap: 12px;
 }
-.locationContainer {
-  display: flex;
-  align-items: center;
-}
 
-.star {
-  fill: var(--color-rating);
-  margin-right: 4px;
-}
-
-.mapActive {
-  margin-left: 16px;
-  margin-right: 4px;
-}
 .singleLine {
   width: 524px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.iconsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.featureLi {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 18px;
-  background-color: var(--color-badges);
-  border-radius: 100px;
 }
 
 .favorited {

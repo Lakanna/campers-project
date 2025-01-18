@@ -1,10 +1,19 @@
 .inputContainer {
   margin-bottom: 40px;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .inputLabel {
   color: var(--color-gray);
+  /* margin-bottom: 8px; */
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
 .input {
@@ -13,19 +22,16 @@
   padding: 18px 20px 18px 48px;
   border-radius: 12px;
   border: none;
-  margin-top: 8px;
-  display: inline-block;
 }
+
 .mapIcon {
   position: absolute;
   top: 56%;
-  left: 20px; /* Розташування іконки всередині */
-
-  pointer-events: none; /* Іконка не блокує доступ до інпуту */
-}
-
-.filtersLabel {
-  margin-bottom: 32px;
+  left: 20px;
+  pointer-events: none;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
 }
 
 .iconsContainer {
@@ -57,4 +63,42 @@
 
 .selected {
   border: 1px solid var(--color-button);
+}
+
+.hiddenRadio {
+  display: none;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.featureLi:has(.hiddenRadio:checked) {
+  border: 1px solid var(--color-button);
+}
+
+.filtersName {
+  margin-top: 32px;
+}
+
+.button {
+  color: var(--color-white);
+  background-color: var(--color-button);
+  width: 173px;
+  height: 56px;
+  border: none;
+  border-radius: 200px;
+  cursor: pointer;
+  margin-top: 40px;
+}
+
+.button:hover {
+  background-color: var(--color-button-hover);
+}
+
+.error {
+  color: var(--color-button-hover);
 }

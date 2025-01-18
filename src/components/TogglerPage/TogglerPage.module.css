@@ -1,0 +1,21 @@
+.tabs {
+  height: 48px;
+  border-bottom: 1px solid var(--color-gray-light);
+  margin-bottom: 44px;
+}
+
+.tab {
+  background-color: var(--color-white);
+  border: none;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: bold;
+  color: var(--color-main);
+  padding: 0;
+  padding-bottom: 21px;
+  margin-right: 40px;
+}
+
+.activeTab {
+  border-bottom: 5px solid var(--color-button);
+}

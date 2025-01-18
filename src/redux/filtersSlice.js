@@ -3,15 +3,20 @@ import { createSlice } from '@reduxjs/toolkit';
 const filtersSlice = createSlice({
   name: 'filters',
   initialState: {
-    location: 'all',
+    location: '',
+    form: '',
+    equipment: [],
   },
   reducers: {
-    setStatusFilter(state, action) {
-      state.status = action.payload;
+    setFilters(state, action) {
+      const { location, form, equipment } = action.payload;
+      state.location = location;
+      state.form = form;
+      state.equipment = equipment;
     },
   },
 });
 
-export const { setStatusFilter } = filtersSlice.actions;
+export const { setFilters } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

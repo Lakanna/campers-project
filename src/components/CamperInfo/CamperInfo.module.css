@@ -1,0 +1,14 @@
+.locationContainer {
+  display: flex;
+  align-items: center;
+}
+
+.star {
+  fill: var(--color-rating);
+  margin-right: 4px;
+}
+
+.mapActive {
+  margin-left: 16px;
+  margin-right: 4px;
+}

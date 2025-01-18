@@ -7,21 +7,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectFavorite } from '../../redux/selectors.js';
 import { toggleFavorite } from '../../redux/favoriteSlice.js';
 
-import { FEATURE_KEYS } from '../../constants/campers.js';
-import { capitalizeFirstLetter } from '../../services/helpers.js';
+import { formatPrice } from '../../services/helpers.js';
+import CamperInfo from '../CamperInfo/CamperInfo.jsx';
+import FilteredIcons from '../FilteredIcons/FilteredIcons.jsx';
 
 export default function CamperCard({ camper }) {
-  const {
-    name,
-    price,
-    rating,
-    location,
-    description,
-    gallery,
-    reviews,
-    engine,
-    transmission,
-  } = camper;
+  const { name, price, rating, location, description, gallery, reviews } =
+    camper;
 
   const dispatch = useDispatch();
 
@@ -32,27 +24,8 @@ export default function CamperCard({ camper }) {
     dispatch(toggleFavorite(camper.id));
   };
 
-  const selectedFeatures = FEATURE_KEYS.reduce((acc, key) => {
-    if (key in camper) {
-      acc[key] = camper[key];
-    }
-    return acc;
-  }, {});
-
-  const filteredFeatures = [];
-
-  for (const key in selectedFeatures) {
-    if (selectedFeatures[key]) {
-      filteredFeatures.push(key);
-    }
-  }
-
   const handleClick = (id) => {
     window.open(`/catalog/${id}`, '_blank');
-  };
-
-  const formatPrice = (price) => {
-    return Number(price).toFixed(2);
   };
 
   return (
@@ -78,37 +51,9 @@ export default function CamperCard({ camper }) {
             </button>
           </div>
         </div>
-        <div className={css.locationContainer}>
-          <Icon id="starDefault" width={16} height={16} className={css.star} />
-          <p>
-            {rating}({reviews.length} Rewievs)
-          </p>
-
-          <Icon id="Map" width={20} height={20} className={css.mapActive} />
-          <p>{location}</p>
-        </div>
+        <CamperInfo rating={rating} reviews={reviews} location={location} />
         <p className={css.singleLine}>{description}</p>
-        <ul className={css.iconsContainer}>
-          {filteredFeatures.map((feature, idx) => (
-            <li key={idx} className={css.featureLi}>
-              <Icon
-                id={feature}
-                width={20}
-                height={20}
-                className={css.feature}
-              />
-              {capitalizeFirstLetter(feature)}
-            </li>
-          ))}
-          <li className={css.featureLi}>
-            <Icon id="petrol" width={20} height={20} className={css.feature} />
-            {capitalizeFirstLetter(engine)}
-          </li>
-          <li className={css.featureLi}>
-            <Icon id="diagram" width={20} height={20} className={css.feature} />
-            {capitalizeFirstLetter(transmission)}
-          </li>
-        </ul>
+        <FilteredIcons camper={camper} />
         <Button text="Show more" handleClick={() => handleClick(camper.id)} />
       </div>
     </div>
