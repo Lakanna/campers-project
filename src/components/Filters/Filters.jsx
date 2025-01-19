@@ -9,6 +9,7 @@ import { FEATURE_KEYS } from '../../constants/campers.js';
 import { useDispatch } from 'react-redux';
 import { setFilters } from '../../redux/filtersSlice.js';
 import { useId } from 'react';
+import Button from '../Button/Button.jsx';
 
 export default function Filters() {
   const dispatch = useDispatch();
@@ -168,10 +169,7 @@ export default function Filters() {
               </ul>
             </div>
           </div>
-
-          <button type="submit" className={css.button}>
-            Search
-          </button>
+          <Button text="Search" type="submit" className={css.button} />
         </Form>
       )}
     </Formik>
