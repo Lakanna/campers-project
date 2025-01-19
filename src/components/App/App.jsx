@@ -5,6 +5,7 @@ import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage.jsx';
 import CatalogPage from '../../pages/CatalogPage/CatalogPage.jsx';
 import CamperDetailsPage from '../../pages/CamperDetailsPage/CamperDetailsPage.jsx';
 import Navigation from '../Navigation/Navigation.jsx';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Route path="/catalog/:id" element={<CamperDetailsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+
+      <ToastContainer />
     </>
   );
 }

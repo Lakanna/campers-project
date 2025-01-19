@@ -14,6 +14,8 @@ import TogglerPage from '../../components/TogglerPage/TogglerPage.jsx';
 import Details from '../../components/Details/Details.jsx';
 import Reviews from '../../components/Reviews/Reviews.jsx';
 import OrderForm from '../../components/OrderForm/OrderForm.jsx';
+import { toast } from 'react-toastify';
+import Loader from '../../components/Loader/Loader.jsx';
 
 export default function CamperDetailsPage() {
   const { id } = useParams();
@@ -24,8 +26,11 @@ export default function CamperDetailsPage() {
 
   const selectedCamper = useSelector(selectSelectedCamper);
 
-  const loading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
+
+  const notify = () => toast.error('Something went wrong. Please, try again');
+  if (error) notify();
 
   useEffect(() => {
     dispatch(fetchCamperById(id));
@@ -40,21 +45,24 @@ export default function CamperDetailsPage() {
     <main>
       <div className={css.page}>
         <div className={css.top}>
-          {loading ? (
-            <p>Loading...</p>
+          {isLoading ? (
+            <Loader />
           ) : error ? (
-            <p>Error: {error}</p>
+            <p className={css.error}>
+              Error: someting went wrong. Please, try again.
+            </p>
           ) : (
             selectedCamper && <CardOfCamper camper={selectedCamper} />
           )}
         </div>
 
-        <TogglerPage activeTab={activeTab} onTabChange={handleTabChange} />
+        {selectedCamper && (
+          <TogglerPage activeTab={activeTab} onTabChange={handleTabChange} />
+        )}
 
         {/* Нижня частина сторінки */}
         <div className={css.bottom}>
           {/* Ліва частина */}
-
           <div className={css.left}>
             {activeTab === 'details' && selectedCamper && (
               <Details camper={selectedCamper} />

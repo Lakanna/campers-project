@@ -1,0 +1,33 @@
+.reviewItem {
+  margin-bottom: 44px;
+}
+
+.container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.round {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--color-badges);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-button);
+}
+
+.filled {
+  fill: var(--color-rating);
+}
+
+.empty {
+  fill: var(--color-badges);
+}
+
+.comment {
+  color: var(--color-text);
+}

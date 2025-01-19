@@ -10,7 +10,10 @@
 }
 
 .results {
-  flex: 1; /* Займає весь залишковий простір */
+  flex: 1; /*Займає весь залишковий простір */
   padding: 16px;
-  overflow-y: auto; /* Скрол, якщо вміст великий */
+  /* overflow-y: auto; Скрол, якщо вміст великий */
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
 }

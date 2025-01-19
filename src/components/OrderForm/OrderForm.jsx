@@ -4,7 +4,7 @@ import Button from '../Button/Button.jsx';
 
 import css from './OrderForm.module.css';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 export default function OrderForm({ camper }) {
   const initialValues = {
@@ -24,8 +24,18 @@ export default function OrderForm({ camper }) {
 
   const handleSubmit = (values, actions) => {
     const notify = () =>
-      toast(
+      toast.success(
         `Hi ${values.name}! You have successfully booked a camper for ${values.date} date.`,
+        {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: 'colored',
+        },
       );
 
     notify();
@@ -46,36 +56,46 @@ export default function OrderForm({ camper }) {
       >
         <Form>
           <div className={css.form}>
-            <Field
-              type="text"
-              name="name"
-              placeholder="Name*"
-              className={css.input}
-            />
-            <ErrorMessage name="name" component="div" className={css.error} />
+            <div className={css.inputWrapper}>
+              <Field
+                type="text"
+                name="name"
+                placeholder="Name*"
+                className={css.input}
+              />
+              <ErrorMessage name="name" component="div" className={css.error} />
+            </div>
 
             <Field type="hidden" name="camperId" />
 
-            <Field
-              type="email"
-              name="email"
-              placeholder="Email*"
-              className={css.input}
-            />
-            <ErrorMessage name="email" component="div" className={css.error} />
+            <div className={css.inputWrapper}>
+              <Field
+                type="email"
+                name="email"
+                placeholder="Email*"
+                className={css.input}
+              />
+              <ErrorMessage
+                name="email"
+                component="div"
+                className={css.error}
+              />
+            </div>
 
-            <Field
-              type="text"
-              name="date"
-              placeholder="Booking date*"
-              className={css.input}
-            />
-            <ErrorMessage name="date" component="div" className={css.error} />
+            <div className={css.inputWrapper}>
+              <Field
+                type="text"
+                name="date"
+                placeholder="Booking date*"
+                className={css.input}
+              />
+              <ErrorMessage name="date" component="div" className={css.error} />
+            </div>
 
             <Field
               as="textarea"
               name="comment"
-              rows="5"
+              rows="4"
               placeholder="Comment"
               className={css.input}
             />
@@ -83,8 +103,6 @@ export default function OrderForm({ camper }) {
           <Button text="Send" className={css.buttonCenter} />
         </Form>
       </Formik>
-
-      <ToastContainer />
     </div>
   );
 }

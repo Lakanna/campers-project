@@ -32,3 +32,9 @@ button {
   padding: 10px 20px;
   cursor: pointer;
 }
+
+.error {
+  color: var(--color-button);
+  font-size: large;
+  text-align: center;
+}

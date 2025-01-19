@@ -8,7 +8,8 @@ import {
   selectSearchParams,
 } from '../../redux/selectors.js';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import Loader from '../../components/Loader/Loader.jsx';
 
 export default function CatalogPage() {
   const dispatch = useDispatch();
@@ -19,13 +20,15 @@ export default function CatalogPage() {
 
   const isError = useSelector(selectError);
 
+  console.log(isError, 'isError');
+
   const notify = () =>
-    toast(
+    toast.error(
       'There are no results for this request. Try to change the search parameters.',
     );
 
   useEffect(() => {
-    if (isError === 'Request failed with status code 404') {
+    if (isError) {
       notify();
     }
   }, [isError]);
@@ -36,8 +39,8 @@ export default function CatalogPage() {
 
   return (
     <>
-      {!isloading && <Catalog />}
-      <ToastContainer />
+      {isloading && <Loader />}
+      {!isloading && !isError && <Catalog />}
     </>
   );
 }
