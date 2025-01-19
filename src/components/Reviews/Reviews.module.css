@@ -1,3 +1,8 @@
+.reviewsContainer {
+  height: 588px;
+  width: 631px;
+}
+
 .reviewItem {
   margin-bottom: 44px;
 }

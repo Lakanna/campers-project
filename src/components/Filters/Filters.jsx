@@ -5,12 +5,17 @@ import Icon from '../Icon/Icon.jsx';
 
 import { capitalizeFirstLetter } from '../../services/helpers.js';
 import { FEATURE_KEYS } from '../../constants/campers.js';
-import { VEHICLE_TYPE } from '../../constants/campers.js';
+// import { VEHICLE_TYPE } from '../../constants/campers.js';
 import { useDispatch } from 'react-redux';
 import { setFilters } from '../../redux/filtersSlice.js';
+import { useId } from 'react';
 
 export default function Filters() {
   const dispatch = useDispatch();
+
+  const vanId = useId();
+  const fullyId = useId();
+  const alcoveId = useId();
 
   const handleSubmit = (values, actions) => {
     dispatch(setFilters(values));
@@ -100,7 +105,7 @@ export default function Filters() {
             <div>
               <h3 className={css.filtersName}>Vehicle type</h3>
               <ul className={css.iconsContainer}>
-                {VEHICLE_TYPE.map((type, idx) => (
+                {/* {VEHICLE_TYPE.map((type, idx) => (
                   <li key={idx} className={css.featureLi}>
                     <Field
                       type="radio"
@@ -117,7 +122,49 @@ export default function Filters() {
                       )}
                     </label>
                   </li>
-                ))}
+                ))} */}
+                <li className={css.featureLi}>
+                  <Field
+                    type="radio"
+                    name="form"
+                    id={vanId}
+                    value="panelTruck"
+                    className={css.hiddenRadio}
+                  />
+                  <label htmlFor={vanId} className={css.label}>
+                    <Icon id="van" width={32} height={32} />
+                    Van
+                  </label>
+                </li>
+
+                <li className={css.featureLi}>
+                  <Field
+                    type="radio"
+                    name="form"
+                    id={fullyId}
+                    value="fullyIntegrated"
+                    className={css.hiddenRadio}
+                  />
+                  <label htmlFor={fullyId} className={css.label}>
+                    <Icon id="fullyIntegrated" width={32} height={32} />
+                    <p>Fully</p>
+                    <p>Integrated</p>
+                  </label>
+                </li>
+
+                <li className={css.featureLi}>
+                  <Field
+                    type="radio"
+                    name="form"
+                    id={alcoveId}
+                    value="alcove"
+                    className={css.hiddenRadio}
+                  />
+                  <label htmlFor={alcoveId} className={css.label}>
+                    <Icon id="alcove" width={32} height={32} />
+                    Alcove
+                  </label>
+                </li>
               </ul>
             </div>
           </div>

@@ -69,11 +69,14 @@
   display: none;
 }
 
-.label {
+.featureLi .label {
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  width: 100%; /* Робимо label блоковим і заповнюємо весь li */
+  height: 100%;
+  justify-content: center;
 }
 
 .featureLi:has(.hiddenRadio:checked) {

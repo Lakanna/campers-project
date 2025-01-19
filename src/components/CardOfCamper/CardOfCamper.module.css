@@ -21,6 +21,7 @@
 
 .imageContainer {
   display: flex;
+  flex-wrap: wrap;
   gap: 48px;
   margin: 28px 0;
 }

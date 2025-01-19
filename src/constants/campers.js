@@ -10,4 +10,4 @@ export const FEATURE_KEYS = [
   'water',
 ];
 
-export const VEHICLE_TYPE = ['van', 'fullyIntegrated', 'alcove'];
+export const VEHICLE_TYPE = ['panelTruck', 'fullyIntegrated', 'alcove'];
