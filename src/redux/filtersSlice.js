@@ -6,6 +6,8 @@ const filtersSlice = createSlice({
     location: '',
     form: '',
     equipment: [],
+    page: 1,
+    limit: 4,
   },
   reducers: {
     setFilters(state, action) {
@@ -13,10 +15,15 @@ const filtersSlice = createSlice({
       state.location = location;
       state.form = form;
       state.equipment = equipment;
+      state.page = 1;
+    },
+    setPage(state, action) {
+      const page = action.payload;
+      state.page = page;
     },
   },
 });
 
-export const { setFilters } = filtersSlice.actions;
+export const { setFilters, setPage } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

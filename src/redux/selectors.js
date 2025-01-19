@@ -6,9 +6,13 @@ export const selectIsLoading = (state) => state.campers.isLoading;
 
 export const selectError = (state) => state.campers.error;
 
+export const selectSelectedCamper = (state) => state.campers.selectedCamper;
+
 export const selectFavorite = (state) => state.favorite.items;
 
-export const selectSelectedCamper = (state) => state.campers.selectedCamper;
+export const selectPage = (state) => state.filters.page;
+
+export const selectLimit = (state) => state.filters.limit;
 
 // Базові селектори для доступу до стану
 const selectFilters = (state) => state.filters;
@@ -30,6 +34,9 @@ export const selectSearchParams = createSelector([selectFilters], (filters) => {
       searchParams[item] = true;
     });
   }
+
+  searchParams.page = filters.page;
+  searchParams.limit = filters.limit;
 
   return searchParams;
 });
