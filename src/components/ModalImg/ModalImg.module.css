@@ -8,7 +8,7 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  color: var(--color-button);
+  color: var(--color-gray);
   background: transparent;
   border: none;
   cursor: pointer;
@@ -16,7 +16,7 @@
   z-index: 10;
 }
 .modalButton:hover {
-  color: var(--color-white);
+  color: var(--color-button);
 }
 
 .imgContainer {

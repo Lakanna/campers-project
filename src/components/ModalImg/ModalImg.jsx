@@ -1,25 +1,14 @@
-import { useState } from 'react';
 import Modal from 'react-modal';
 import css from './ModalImg.module.css';
 
 Modal.setAppElement('#root');
 
-export default function ModalImg({ src }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
-
+export default function ModalImg({ src, closeModal, isOpen }) {
   return (
     <>
-      <img
-        src={src}
-        alt="Thumbnail"
-        className={css.smallImg}
-        onClick={openModal}
-      />
       <Modal
         isOpen={isOpen}
+        shouldCloseOnOverlayClick={true}
         onRequestClose={closeModal}
         style={{
           content: {
@@ -37,7 +26,7 @@ export default function ModalImg({ src }) {
       >
         <div className={css.imgContainer}>
           <img src={src} alt="Full-size" />
-          <button onClick={closeModal} className={css.modalButton}>
+          <button onClick={() => closeModal()} className={css.modalButton}>
             X
           </button>
         </div>
