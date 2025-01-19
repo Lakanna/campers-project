@@ -1,5 +1,6 @@
 import { formatPrice } from '../../services/helpers.js';
 import CamperInfo from '../CamperInfo/CamperInfo.jsx';
+import ModalImg from '../ModalImg/ModalImg.jsx';
 import css from './CardOfCamper.module.css';
 
 export default function CardOfCamper({ camper }) {
@@ -16,7 +17,7 @@ export default function CardOfCamper({ camper }) {
         <ul className={css.imageContainer}>
           {gallery.map((item, idx) => (
             <li key={idx} className={css.imgItem}>
-              <img src={item.original} alt={name} className={css.img} />
+              <ModalImg src={item.original} />
             </li>
           ))}
         </ul>

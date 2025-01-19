@@ -29,7 +29,7 @@ export default function OrderForm({ camper }) {
         {
           position: 'top-center',
           autoClose: 5000,
-          hideProgressBar: true,
+          hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: false,

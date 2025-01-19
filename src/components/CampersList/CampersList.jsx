@@ -24,7 +24,7 @@ export default function CampersList() {
 
   const handlerClick = () => {
     const newPage = page + 1;
-    console.log(newPage, 'newPage in handler');
+
     dispatch(setPage(newPage));
   };
 

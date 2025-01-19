@@ -20,11 +20,19 @@ export default function CatalogPage() {
 
   const isError = useSelector(selectError);
 
-  console.log(isError, 'isError');
-
   const notify = () =>
     toast.error(
       'There are no results for this request. Try to change the search parameters.',
+      {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: 'colored',
+      },
     );
 
   useEffect(() => {
@@ -40,7 +48,7 @@ export default function CatalogPage() {
   return (
     <>
       {isloading && <Loader />}
-      {!isloading && !isError && <Catalog />}
+      {!isloading && <Catalog />}
     </>
   );
 }
