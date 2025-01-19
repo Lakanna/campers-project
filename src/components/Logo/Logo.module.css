@@ -6,6 +6,4 @@
 
 .second {
   fill: var(--color-text);
-  display: inline-block;
-  vertical-align: middle;
 }
