@@ -8,3 +8,6 @@ svg {
   display: inline-block;
   vertical-align: middle;
 } */
+.icon {
+  fill: var(--color-main);
+}

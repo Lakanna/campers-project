@@ -4,9 +4,12 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   /* font-weight: 400; */
-}
 
+  font-family: sans-serif;
+  line-height: 1.5;
+}
 body {
+  color: var(--color-main);
   --color-white: #ffffff;
   --color-main: #101828;
   --color-text: #475467;
@@ -18,9 +21,20 @@ body {
   --color-button: #e44848;
   --color-button-hover: #d84343;
   --color-rating: #ffc531;
-
-  font-family: sans-serif;
-  line-height: 1.5;
+}
+body.dark-theme {
+  color: var(--color-main);
+  --color-white: #1f1f1f; /* Світлий текст, контрастний, але м'який */
+  --color-main: #9391bd; /* Основний фон з легким фіолетовим відтінком */
+  --color-text: #a8a9b3; /* Текстовий колір для стандартного тексту */
+  --color-inputs: #2a293d; /* Фон для інпутів/контейнерів */
+  --color-badges: #3a3951; /* Фон для бейджів/ярликів */
+  --color-gray: #8a8b98; /* Середній сірий для вторинного тексту */
+  --color-gray-light: #45455a; /* Легкий фон для розділень, бордерів */
+  --color-gray-details: #343244; /* Деталі/тіньові акценти */
+  --color-button: #9a56c3; /* Фіолетовий колір для кнопок */
+  --color-button-hover: #8d409d; /* Темніший варіант фіолетового для ховерів */
+  --color-rating: #ffd966; /* М'який жовтий для рейтингу */
 }
 
 h1,

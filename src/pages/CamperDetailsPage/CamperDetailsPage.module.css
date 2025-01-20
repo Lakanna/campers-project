@@ -3,6 +3,8 @@
   flex-direction: column;
   gap: 20px;
   padding: 48px 64px;
+  background-color: var(--color-white);
+  color: var(--color-main);
 }
 
 .top {
@@ -20,7 +22,7 @@
 
 .right {
   flex: 1;
-  background-color: #ffffff;
+  background-color: var(--color-white);
 }
 
 .tabs {

@@ -2,14 +2,14 @@ import css from './CamperCard.module.css';
 
 import Icon from '../Icon/Icon.jsx';
 import Button from '../Button/Button.jsx';
+import CamperInfo from '../CamperInfo/CamperInfo.jsx';
+import FilteredIcons from '../FilteredIcons/FilteredIcons.jsx';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFavorite } from '../../redux/selectors.js';
 import { toggleFavorite } from '../../redux/favoriteSlice.js';
 
 import { formatPrice } from '../../services/helpers.js';
-import CamperInfo from '../CamperInfo/CamperInfo.jsx';
-import FilteredIcons from '../FilteredIcons/FilteredIcons.jsx';
 
 export default function CamperCard({ camper }) {
   const { name, price, rating, location, description, gallery, reviews } =

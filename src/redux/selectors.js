@@ -10,6 +10,8 @@ export const selectSelectedCamper = (state) => state.campers.selectedCamper;
 
 export const selectFavorite = (state) => state.favorite.items;
 
+export const selectTheme = (state) => state.theme.theme;
+
 export const selectPage = (state) => state.filters.page;
 
 export const selectLimit = (state) => state.filters.limit;

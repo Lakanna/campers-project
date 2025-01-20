@@ -12,7 +12,7 @@
   width: 138px;
   justify-content: space-between;
 
-  margin-left: 450px;
+  margin: 0 450px;
 }
 
 .link {
@@ -20,4 +20,20 @@
 }
 .active {
   color: var(--color-button-hover);
+}
+
+.themeButton {
+  width: 100px;
+  height: 40px;
+  border-radius: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid var(--color-gray-light); */
+  padding: 20px;
+  gap: 10px;
+  cursor: pointer;
+  color: var(--color-main);
+  fill: var(--color-main);
+  background-color: var(--color-white);
 }

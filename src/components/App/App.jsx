@@ -1,8 +1,10 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navigation from '../Navigation/Navigation.jsx';
 import { ToastContainer } from 'react-toastify';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../../redux/selectors.js';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
 const NotFoundPage = lazy(() =>
@@ -16,6 +18,11 @@ const CamperDetailsPage = lazy(() =>
 );
 
 function App() {
+  const theme = useSelector(selectTheme);
+
+  useEffect(() => {
+    document.body.className = theme === 'dark' ? 'dark-theme' : '';
+  }, [theme]);
   return (
     <>
       <Navigation />
