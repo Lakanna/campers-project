@@ -1,6 +1,6 @@
 .card {
   width: 888px;
-  height: 368px;
+  /* height: 368px; */
   display: flex;
   padding: 24px;
   gap: 24px;
@@ -27,7 +27,6 @@
   flex-direction: column;
   justify-content: space-between;
   width: 524px;
-  height: 320px;
 }
 
 .nameContainer {

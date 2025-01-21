@@ -6,6 +6,7 @@ const filtersSlice = createSlice({
     location: '',
     form: '',
     equipment: [],
+
     page: 1,
     limit: 4,
   },

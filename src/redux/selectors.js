@@ -12,6 +12,12 @@ export const selectFavorite = (state) => state.favorite.items;
 
 export const selectTheme = (state) => state.theme.theme;
 
+export const selectLocation = (state) => state.filters.location;
+
+export const selectEquipment = (state) => state.filters.equipment;
+
+export const selectForm = (state) => state.filters.form;
+
 export const selectPage = (state) => state.filters.page;
 
 export const selectLimit = (state) => state.filters.limit;
@@ -24,7 +30,7 @@ export const selectSearchParams = createSelector([selectFilters], (filters) => {
   const searchParams = {};
 
   if (filters.location.trim() !== '') {
-    searchParams.location = filters.location;
+    searchParams.location = 'Ukraine, ' + filters.location;
   }
 
   if (filters.form.trim() !== '') {

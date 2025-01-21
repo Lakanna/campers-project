@@ -6,37 +6,43 @@ import Icon from '../Icon/Icon.jsx';
 import { capitalizeFirstLetter } from '../../services/helpers.js';
 import { FEATURE_KEYS } from '../../constants/campers.js';
 // import { VEHICLE_TYPE } from '../../constants/campers.js';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setFilters } from '../../redux/filtersSlice.js';
 import { useId } from 'react';
 import Button from '../Button/Button.jsx';
+import {
+  selectEquipment,
+  selectForm,
+  selectLocation,
+} from '../../redux/selectors.js';
+import { changeFilters } from '../../redux/campersSlice.js';
 
 export default function Filters() {
   const dispatch = useDispatch();
+  const locationFromState = useSelector(selectLocation);
+  const formFromState = useSelector(selectForm);
+  const equipmentFromState = useSelector(selectEquipment);
 
   const vanId = useId();
   const fullyId = useId();
   const alcoveId = useId();
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = (values) => {
+    dispatch(changeFilters());
     dispatch(setFilters(values));
-    actions.resetForm();
   };
 
-  const locationValidation = /^[A-Za-z\s]+,\s[A-Za-z\s]+$/;
+  // const locationValidation = /^[A-Za-z\s]+,\s[A-Za-z\s]+$/;
 
   return (
     <Formik
       initialValues={{
-        location: '',
-        form: '',
-        equipment: [],
+        location: locationFromState,
+        form: formFromState,
+        equipment: equipmentFromState,
       }}
       validationSchema={Yup.object({
-        location: Yup.string().matches(
-          locationValidation,
-          'Location must be in the format: "Country, City"',
-        ),
+        location: Yup.string(),
       })}
       onSubmit={handleSubmit}
     >
@@ -65,7 +71,7 @@ export default function Filters() {
 
           <div>
             <p className={css.filtersLabel}>Filters</p>
-            {/* Список кастомних чекбоксів */}
+
             <div>
               <h3 className={css.filtersName}>Vehicle equipment</h3>
               <FieldArray
