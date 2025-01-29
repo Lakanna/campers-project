@@ -1,12 +1,22 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Button from '../Button/Button.jsx';
+import DatePicker from 'react-datepicker';
 
+import 'react-datepicker/dist/react-datepicker.css';
 import css from './OrderForm.module.css';
 
 import { toast } from 'react-toastify';
+import { useState } from 'react';
+
+import { registerLocale } from 'react-datepicker';
+import enGB from 'date-fns/locale/en-GB';
+
+registerLocale('en-GB', enGB);
 
 export default function OrderForm({ camper }) {
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+
   const initialValues = {
     name: '',
     email: '',
@@ -14,6 +24,7 @@ export default function OrderForm({ camper }) {
     comment: '',
     camperId: camper.id,
   };
+
   const validationSchema = Yup.object({
     name: Yup.string().required('Name is required'),
     email: Yup.string()
@@ -54,54 +65,76 @@ export default function OrderForm({ camper }) {
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
-        <Form>
-          <div className={css.form}>
-            <div className={css.inputWrapper}>
+        {({ setFieldValue, values }) => (
+          <Form>
+            <div className={css.form}>
+              <label className={css.inputWrapper}>
+                <Field
+                  type="text"
+                  name="name"
+                  placeholder="Name*"
+                  className={css.input}
+                />
+                <ErrorMessage
+                  name="name"
+                  component="div"
+                  className={css.error}
+                />
+              </label>
+
+              <label className={css.inputWrapper}>
+                <Field
+                  type="email"
+                  name="email"
+                  placeholder="Email*"
+                  className={css.input}
+                />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className={css.error}
+                />
+              </label>
+              <label className={css.inputWrapper}>
+                <DatePicker
+                  selected={values.date}
+                  onChange={(date) => setFieldValue('date', date)}
+                  locale="en-GB" // Встановлюємо локаль (тиждень починається з ПН)
+                  formatWeekDay={(day) => day.substring(0, 3).toUpperCase()}
+                  dateFormat="dd-MM-yyyy"
+                  onCalendarOpen={() => setIsCalendarOpen(true)}
+                  onCalendarClose={() => setIsCalendarOpen(false)}
+                  placeholderText={
+                    isCalendarOpen
+                      ? 'Select a date between today'
+                      : 'Booking date*'
+                  }
+                  className={css.input}
+                  calendarClassName={css.calendar}
+                  minDate={new Date()}
+                />
+
+                <ErrorMessage
+                  name="date"
+                  component="div"
+                  className={css.error}
+                />
+              </label>
+
               <Field
-                type="text"
-                name="name"
-                placeholder="Name*"
+                as="textarea"
+                name="comment"
+                rows="4"
+                placeholder="Comment"
                 className={css.input}
               />
-              <ErrorMessage name="name" component="div" className={css.error} />
+
+              <Field type="hidden" name="camperId" />
             </div>
 
-            <Field type="hidden" name="camperId" />
-
-            <div className={css.inputWrapper}>
-              <Field
-                type="email"
-                name="email"
-                placeholder="Email*"
-                className={css.input}
-              />
-              <ErrorMessage
-                name="email"
-                component="div"
-                className={css.error}
-              />
-            </div>
-
-            <div className={css.inputWrapper}>
-              <Field
-                type="text"
-                name="date"
-                placeholder="Booking date*"
-                className={css.input}
-              />
-              <ErrorMessage name="date" component="div" className={css.error} />
-            </div>
-
-            <Field
-              as="textarea"
-              name="comment"
-              rows="4"
-              placeholder="Comment"
-              className={css.input}
-            />
-          </div>
-          <Button text="Send" className={css.buttonCenter} />
-        </Form>
+            <Button text="Send" className={css.buttonCenter} />
+          </Form>
+        )}
       </Formik>
     </div>
   );
