@@ -66,7 +66,7 @@ export default function OrderForm({ camper }) {
         validationSchema={validationSchema}
       >
         {({ setFieldValue, values }) => (
-          <Form>
+          <Form className={css.formForButton}>
             <div className={css.form}>
               <label className={css.inputWrapper}>
                 <Field
@@ -74,6 +74,7 @@ export default function OrderForm({ camper }) {
                   name="name"
                   placeholder="Name*"
                   className={css.input}
+                  autoComplete="true"
                 />
                 <ErrorMessage
                   name="name"
@@ -87,6 +88,7 @@ export default function OrderForm({ camper }) {
                   type="email"
                   name="email"
                   placeholder="Email*"
+                  autoComplete="true"
                   className={css.input}
                 />
                 <ErrorMessage
@@ -99,7 +101,7 @@ export default function OrderForm({ camper }) {
                 <DatePicker
                   selected={values.date}
                   onChange={(date) => setFieldValue('date', date)}
-                  locale="en-GB" // Встановлюємо локаль (тиждень починається з ПН)
+                  locale="en-GB"
                   formatWeekDay={(day) => day.substring(0, 3).toUpperCase()}
                   dateFormat="dd-MM-yyyy"
                   onCalendarOpen={() => setIsCalendarOpen(true)}
@@ -112,6 +114,8 @@ export default function OrderForm({ camper }) {
                   className={css.input}
                   calendarClassName={css.calendar}
                   minDate={new Date()}
+                  name="date"
+                  autoComplete="false"
                 />
 
                 <ErrorMessage
@@ -124,7 +128,7 @@ export default function OrderForm({ camper }) {
               <Field
                 as="textarea"
                 name="comment"
-                rows="4"
+                rows="5"
                 placeholder="Comment"
                 className={css.input}
               />

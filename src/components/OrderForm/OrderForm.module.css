@@ -12,6 +12,7 @@
   flex-direction: column;
   gap: 14px;
   margin-top: 24px;
+  width: inherit;
 }
 
 .input {
@@ -26,7 +27,8 @@
 }
 
 .buttonCenter {
-  margin: 24px 180px 0px 180px;
+  margin: 0 auto;
+  margin-top: 24px;
 }
 
 .subtitle {
@@ -47,6 +49,12 @@
   font-size: 0.7rem;
 }
 
+.formForButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 .calendar {
   background-color: var(--color-white);
   color: var(--color-text);
@@ -72,6 +80,7 @@
   color: var(--color-main);
   width: 36px;
   height: 32px;
+  line-height: 32px;
   font-size: 14px;
   margin: 0 !important;
   text-align: center;
@@ -117,4 +126,12 @@
 :global(.react-datepicker__navigation-icon::before),
 :global(.react-datepicker__navigation-icon--next::before) {
   border-color: var(--color-text);
+}
+
+:global(.react-datepicker__day--today) {
+  color: var(--color-button);
+}
+
+:global(.react-datepicker__day--disabled) {
+  color: var(--color-text);
 }
